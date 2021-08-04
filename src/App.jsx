@@ -115,7 +115,7 @@ function App() {
               onClick={() => {
                 navigator.clipboard.writeText(teamsToString());
               }}
-              src="src/copy.svg"
+              src="/copy.svg"
               role="button"
             />
           </div>
