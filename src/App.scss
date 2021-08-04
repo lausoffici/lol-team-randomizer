@@ -1,5 +1,10 @@
+$primary-color: #d8881f;
+$gray: #555555;
+$black: #1e1e1e;
+$background-color: #292929;
+
 .app-content {
-  background-color: #292929;
+  background-color: $background-color;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -27,7 +32,7 @@ ul.players-suggestions {
   max-width: 80%px;
 
   li {
-    background-color: #1e1e1e;
+    background-color: $black;
     padding: 5px 10px;
     border-radius: 8px;
     transition: 0.1s ease-in-out;
@@ -35,14 +40,14 @@ ul.players-suggestions {
 
     &:hover {
       color: white;
-      background-color: rgb(216, 136, 31);
+      background-color: $primary-color;
     }
   }
 }
 
 button:focus,
 input:focus {
-  box-shadow: inset 0 0 0 1px #292929, 0 0 3px 1px rgb(255, 255, 255);
+  box-shadow: inset 0 0 0 1px $black, 0 0 3px 1px rgb(255, 255, 255);
 }
 
 button {
@@ -50,7 +55,7 @@ button {
   font-size: 0.6em;
   margin-top: 10px;
   cursor: pointer;
-  background-color: rgb(216, 136, 31);
+  background-color: $primary-color;
   border-radius: 4px;
   color: white;
   border: none;
@@ -82,7 +87,7 @@ form.add-player {
     text-transform: uppercase;
     outline: none;
     border: none;
-    background-color: rgb(85, 85, 85);
+    background-color: $gray;
     color: white;
     caret-color: white;
     padding: 10px;
@@ -109,7 +114,7 @@ form.add-player {
       &::before {
         content: counter(item) ". ";
         counter-increment: item;
-        color: rgb(216, 136, 31);
+        color: $primary-color;
       }
     }
   }
@@ -132,7 +137,7 @@ form.add-player {
         min-width: 150px;
         padding: 10px 20px;
         border-radius: 8px;
-        border: 2px solid rgb(85, 85, 85);
+        border: 2px solid $gray;
         cursor: default;
       }
     }
@@ -149,7 +154,10 @@ form.add-player {
 .copy-to-clipboard {
   cursor: pointer;
   margin-top: 40px;
-  height: 40px;
+  height: 30px;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: $gray;
 }
 
 @media (max-width: 800px) {
