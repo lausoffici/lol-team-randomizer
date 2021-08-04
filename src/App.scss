@@ -40,6 +40,11 @@ ul.players-suggestions {
   }
 }
 
+button:focus,
+input:focus {
+  box-shadow: inset 0 0 0 1px #292929, 0 0 3px 1px rgb(255, 255, 255);
+}
+
 button {
   padding: 10px 20px;
   font-size: 0.6em;
@@ -56,18 +61,13 @@ button {
   &:hover {
     background-color: rgb(216, 122, 0);
   }
-
   &:active {
     background-color: rgb(236, 151, 40);
   }
-
   &:disabled {
     background-color: rgb(189, 155, 112);
     color: rgb(255, 255, 255);
     cursor: not-allowed;
-  }
-  &:focus {
-    outline: 1px solid white;
   }
 }
 
@@ -132,6 +132,8 @@ form.add-player {
         min-width: 150px;
         padding: 10px 20px;
         border-radius: 8px;
+        border: 2px solid rgb(85, 85, 85);
+        cursor: default;
       }
     }
 
