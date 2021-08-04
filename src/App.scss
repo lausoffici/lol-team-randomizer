@@ -17,6 +17,7 @@ ol {
 ul.players-suggestions {
   display: flex;
   justify-content: center;
+  font-family: monospace;
   align-items: center;
   flex-wrap: wrap;
   font-size: 0.85em;
@@ -50,6 +51,7 @@ button {
   border: none;
   outline: none;
   transition: 0.1s ease-in-out;
+  font-weight: bold;
 
   &:hover {
     background-color: rgb(216, 122, 0);
@@ -63,6 +65,9 @@ button {
     background-color: rgb(189, 155, 112);
     color: rgb(255, 255, 255);
     cursor: not-allowed;
+  }
+  &:focus {
+    outline: 1px solid white;
   }
 }
 
@@ -96,6 +101,7 @@ form.add-player {
     margin: 20px 0;
     counter-reset: item;
     text-align: left;
+    font-family: monospace;
 
     li {
       cursor: pointer;
@@ -109,23 +115,42 @@ form.add-player {
   }
 
   .teams {
-    margin-top: 30px;
+    margin-top: 20px;
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    font-family: monospace;
+    font-size: 0.8em;
 
-    .team {
-      min-width: 200px;
-      padding: 0.6em;
-      background-color: rgb(85, 85, 85);
-      border-radius: 6px;
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      li {
+        min-width: 150px;
+        padding: 10px 20px;
+        border-radius: 8px;
+      }
+    }
+
+    .team-1-player {
+      background-color: #2e2c5a;
+    }
+    .team-2-player {
+      background-color: #563131;
     }
   }
 }
 
-@media (max-width: 600px) {
+.copy-to-clipboard {
+  cursor: pointer;
+  margin-top: 40px;
+  height: 40px;
+}
+
+@media (max-width: 800px) {
   .players-teams-container {
     flex-direction: column;
     gap: 0;
@@ -133,5 +158,9 @@ form.add-player {
     ol.players {
       text-align: center;
     }
+  }
+
+  .copy-to-clipboard {
+    height: 30px;
   }
 }

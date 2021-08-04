@@ -38,6 +38,8 @@ function App() {
   const removePlayer = (e) => {
     const name = e.target.textContent;
     setPlayers(players.filter((p) => p !== name));
+    setTeam1([]);
+    setTeam2([]);
   };
 
   const onSubmitPlayer = (e) => {
@@ -53,10 +55,12 @@ function App() {
     setTeam2(shuffledPlayers.filter((_, index) => index >= 5));
   };
 
+  const teamsToString = () =>
+    `Team 1: \n${team1[0]}\n${team1[1]}\n${team1[2]}\n${team1[3]}\n${team1[4]}\n\nTeam 2:\n${team2[0]}\n${team2[1]}\n${team2[2]}\n${team2[3]}\n${team2[4]}`;
+
   return (
     <div className="app-content">
-      <h1>Se pica la custom?</h1>
-
+      <h1>Random Team Builder</h1>
       <ul className="players-suggestions">
         {suggestions.map((player) => (
           <li key={player} onClick={(e) => addPlayer(e.target.textContent)}>
@@ -70,49 +74,62 @@ function App() {
           type="text"
           onChange={(e) => setNewPlayer(e.target.value)}
           placeholder="name ..."
+          disabled={players.length === 10}
         />
-        <button disabled={players.length >= 10}>Agregar</button>
+        <button disabled={players.length >= 10}>Add</button>
       </form>
       <div className="players-teams-container">
-        <div>
-          <h2>Jugadores</h2>
-          <ol className="players">
-            {players.map((player) => (
-              <li onClick={removePlayer} key={player}>
-                {player}
-              </li>
-            ))}
-          </ol>
-        </div>
-        {team1.length ? (
+        {players.length ? (
           <div>
-            <h2>Equipos</h2>
+            <h2>Players</h2>
+            <ol className="players">
+              {players.map((player) => (
+                <li onClick={removePlayer} key={player}>
+                  {player}
+                </li>
+              ))}
+            </ol>
+          </div>
+        ) : null}
+        {team1.length && team2.length && players.length === 10 ? (
+          <div>
+            <h2>Teams</h2>
             <div className="teams">
-              <div className="team">
-                <ul>
-                  {team1.map((player) => (
-                    <li key={player}>{player}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="team">
-                <ul>
-                  {team2.map((player) => (
-                    <li key={player}>{player}</li>
-                  ))}
-                </ul>
-              </div>
+              <ul>
+                {team1.map((player) => (
+                  <li className="team-1-player" key={player}>
+                    {player}
+                  </li>
+                ))}
+              </ul>
+              <ul>
+                {team2.map((player) => (
+                  <li className="team-2-player" key={player}>
+                    {player}
+                  </li>
+                ))}
+              </ul>
             </div>
+            <img
+              className="copy-to-clipboard"
+              onClick={() => {
+                navigator.clipboard.writeText(teamsToString());
+              }}
+              src="src/copy.svg"
+              role="button"
+            />
           </div>
         ) : null}
       </div>
-      <button
-        style={{ margin: "20px 0" }}
-        disabled={players.length !== 10}
-        onClick={buildTeams}
-      >
-        RANDOM
-      </button>
+      {players.length === 10 ? (
+        <button
+          style={{ margin: "20px 0" }}
+          disabled={players.length !== 10}
+          onClick={buildTeams}
+        >
+          Randomize
+        </button>
+      ) : null}
     </div>
   );
 }
