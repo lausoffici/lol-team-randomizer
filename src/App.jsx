@@ -24,6 +24,8 @@ function App() {
   const [team1, setTeam1] = useState([]);
   const [team2, setTeam2] = useState([]);
 
+  const allPlayers = players.length === 10;
+
   useEffect(() => {
     setSuggestions(commonPlayers.filter((s) => !players.includes(s)));
   }, [players]);
@@ -74,7 +76,7 @@ function App() {
           type="text"
           onChange={(e) => setNewPlayer(e.target.value)}
           placeholder="name ..."
-          disabled={players.length === 10}
+          disabled={players.length === 10 || !newPlayer}
         />
         <button disabled={players.length >= 10}>Add</button>
       </form>
