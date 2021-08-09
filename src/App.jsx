@@ -24,14 +24,14 @@ function App() {
   const [team1, setTeam1] = useState([]);
   const [team2, setTeam2] = useState([]);
 
-  const allPlayers = players.length === 10;
+  const fullPlayers = players.length === 10;
 
   useEffect(() => {
     setSuggestions(commonPlayers.filter((s) => !players.includes(s)));
   }, [players]);
 
   const addPlayer = (name) => {
-    if (!name || players.length === 10) return;
+    if (!name || fullPlayers) return;
     if (!players.includes(name)) {
       setPlayers([...players, name]);
     }
@@ -76,9 +76,9 @@ function App() {
           type="text"
           onChange={(e) => setNewPlayer(e.target.value)}
           placeholder="name ..."
-          disabled={players.length === 10 || !newPlayer}
+          disabled={fullPlayers}
         />
-        <button disabled={players.length >= 10}>Add</button>
+        <button disabled={fullPlayers || !newPlayer}>Add</button>
       </form>
       <div className="players-teams-container">
         {players.length ? (
@@ -93,7 +93,7 @@ function App() {
             </ol>
           </div>
         ) : null}
-        {team1.length && team2.length && players.length === 10 ? (
+        {team1.length && team2.length && fullPlayers ? (
           <div>
             <h2>Teams</h2>
             <div className="teams">
@@ -123,10 +123,10 @@ function App() {
           </div>
         ) : null}
       </div>
-      {players.length === 10 ? (
+      {fullPlayers ? (
         <button
           style={{ margin: "20px 0" }}
-          disabled={players.length !== 10}
+          disabled={!fullPlayers}
           onClick={buildTeams}
         >
           Randomize
