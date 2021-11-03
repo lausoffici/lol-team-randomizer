@@ -15,6 +15,10 @@ const commonPlayers = [
   "NAWE",
   "FACUPEH",
   "SALAH",
+  "TOMO",
+  "SOMBRA",
+  "FEDO",
+  "🐀 FRANQUITO",
 ];
 
 function App() {
